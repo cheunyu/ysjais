@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- Ais消息生成服务 -->
+    <bean id="aisMsgForecastServiceImpl"
+          class="com.scyb.aisbroadcast.ais.service.impl.AisMsgForecastServiceImpl">
+        <property name="convertUtil" ref="convertUtil"></property>
+        <property name="locationInfoServiceImpl" ref="locationInfoServiceImpl"></property>
+    </bean>
+
+    <!-- 播发Ais消息服务 -->
+    <bean id="sendMessageServiceImpl" class="com.scyb.aisbroadcast.ais.service.impl.SendMessageServiceImpl"></bean>
+
+    <!-- 解析北斗串口数据服务-->
+    <bean id="analyzeComDataServiceImpl" class="com.scyb.aisbroadcast.bd.service.impl.AnalyzeComDataServiceImpl">
+        <property name="bdComUtil" ref="bdComUtil"></property>
+    </bean>
+
+    <!-- 常规预报服务 -->
+    <bean id="generalForecastServiceImpl"
+          class="com.scyb.aisbroadcast.bd.service.impl.GeneralForecastServiceImpl"
+          scope="prototype">
+        <property name="generalForecastDaoImpl" ref="generalForecastDaoImpl"></property>
+        <property name="aisMsgForecastServiceImpl" ref="aisMsgForecastServiceImpl"></property>
+        <property name="characterConvertAisCodeUtil" ref="characterConvertAisCodeUtil"></property>
+        <property name="serialDataUtil" ref="serialDataUtil"></property>
+        <property name="sendMessageServiceImpl" ref="sendMessageServiceImpl"></property>
+    </bean>
+
+    <!-- 数值预报服务 -->
+    <bean id="numericalForecastServiceImpl"
+          class="com.scyb.aisbroadcast.bd.service.impl.NumericalForecastServiceImpl"
+          scope="prototype">
+        <property name="numericalForecastDaoImpl" ref="numericalForecastDaoImpl"></property>
+        <property name="aisMsgForecastServiceImpl" ref="aisMsgForecastServiceImpl"></property>
+        <property name="characterConvertAisCodeUtil" ref="characterConvertAisCodeUtil"></property>
+        <property name="serialDataUtil" ref="serialDataUtil"></property>
+        <property name="sendMessageServiceImpl" ref="sendMessageServiceImpl"></property>
+    </bean>
+
+    <!-- 位置设置服务 -->
+    <bean id="locationInfoServiceImpl"
+          class="com.scyb.aisbroadcast.bd.service.impl.LocationInfoServiceImpl"
+          scope="prototype">
+        <property name="locationInfoDaoImpl" ref="locationInfoDaoImpl"></property>
+    </bean>
+
+    <!-- 短消息服务 -->
+    <bean id="messageServiceImpl"
+          class="com.scyb.aisbroadcast.bd.service.impl.MessageServiceImpl"
+          scope="prototype">
+        <property name="messageDaoImpl" ref="messageDaoImpl"></property>
+        <property name="characterConvertAisCodeUtil" ref="characterConvertAisCodeUtil"></property>
+        <property name="serialDataUtil" ref="serialDataUtil"></property>
+        <property name="sendMessageServiceImpl" ref="sendMessageServiceImpl"></property>
+    </bean>
+</beans>

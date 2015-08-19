@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- Oracle WeatherData DataSource Config-->
+	<bean id="companyDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${orcl_driver}"></property>
+		<property name="jdbcUrl" value="${orcl_url}"></property>
+		<property name="user" value="${orcl_username}" />  
+		<property name="password" value="${orcl_password}" />  
+		<property name="minPoolSize" value="${c3p0_minPoolSize}" />  
+        <property name="maxPoolSize" value="${c3p0_maxPoolSize}" />  
+        <property name="maxIdleTime" value="${c3p0_maxIdleTime}" />  
+        <property name="acquireIncrement" value="${c3p0_acquireIncrement}" />  
+        <property name="maxStatements" value="${c3p0_maxStatements}" />  
+        <property name="initialPoolSize" value="${c3p0_initialPoolSize}" />  
+        <property name="idleConnectionTestPeriod" value="${c3p0_maxIdleTime}" />  
+        <property name="acquireRetryAttempts" value="${c3p0_acquireIncrement}" />  
+        <property name="breakAfterAcquireFailure" value="false" />  
+        <property name="testConnectionOnCheckout">
+        	<value>false</value>
+        </property>
+	</bean>
+	
+
+	<!-- Company SessionFactory Config -->
+	<bean id="companySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		p:dataSource-ref="companyDataSource">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.autocommit">false</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory
+				</prop>
+				<prop key="hibernate.connection.release_mode">after_statement</prop>
+                <prop key="hibernate.connection.url">jdbc:oracle:thin:@//192.168.1.162:1521/orcl</prop>
+                <prop key="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</prop>
+            </props>
+		</property>
+		<property name="mappingResources">
+			<list>
+                <value>com/scyb/aisbroadcast/bd/bo/GeneralForecast.hbm.xml</value>
+                <value>com/scyb/aisbroadcast/bd/bo/NumericalForecast.hbm.xml</value>
+                <value>com/scyb/aisbroadcast/bd/bo/LocationInfo.hbm.xml</value>
+                <value>com/scyb/aisbroadcast/bd/bo/Message.hbm.xml</value>
+            </list>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="companySessionFactory"></bean>
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="query*">PROPAGATION_REQUIRED</prop>
+				<prop key="rem*">PROPAGATION_REQUIRED</prop>
+				<prop key="edit*">PROPAGATION_REQUIRED</prop>
+				<prop key="exe*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>*DaoImpl</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+</beans>

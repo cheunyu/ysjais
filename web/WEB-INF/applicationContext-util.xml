@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- 坐标转换工具 -->
+    <bean id="convertUtil" class="com.scyb.aisbroadcast.common.util.ConvertUtil"></bean>
+
+    <!-- 北斗电文串口处理 -->
+    <bean id="bdInfoUtil" class="com.scyb.aisbroadcast.bd.util.BDInfoUtil">
+    </bean>
+    <!-- 北斗数据串口处理 -->
+    <bean id="bdMsgUtil" class="com.scyb.aisbroadcast.bd.util.BDMsgUtil">
+    </bean>
+
+    <bean id="bdComUtil" class="com.scyb.aisbroadcast.bd.util.BDComUtil"></bean>
+
+    <!-- 0183NMEA -->
+    <bean id="nmea0183ConvertBinaryUtil" class="com.scyb.aisbroadcast.ais.util.NMEA0183ConvertBinaryUtil"></bean>
+
+    <!-- itu1371-4 -->
+    <bean id="iec1371ConvertSerialUtil" class="com.scyb.aisbroadcast.ais.util.IEC1371ConvertSerialUtil"></bean>
+
+    <!-- AIS中文转码 -->
+    <bean id="characterConvertAisCodeUtil" class="com.scyb.aisbroadcast.ais.util.CharacterConvertAisCodeUtil"></bean>
+
+    <bean id="ascIIConvertBinaryUtil" class="com.scyb.aisbroadcast.ais.util.AscIIConvertBinaryUtil"></bean>
+
+    <!-- ais串口数据编译 -->
+    <bean id="serialDataUtil" class="com.scyb.aisbroadcast.ais.util.SerialDataUtil">
+        <property name="ascIIConvertBinaryUtil" ref="ascIIConvertBinaryUtil"></property>
+        <property name="iec1371ConvertSerialUtil" ref="iec1371ConvertSerialUtil"></property>
+    </bean>
+</beans>

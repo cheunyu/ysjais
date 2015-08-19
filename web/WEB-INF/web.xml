@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- log4j config -->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/config/log4j.properties</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jRefreshInterval</param-name>
+        <param-value>6000</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <!-- spring config -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- properties initialize -->
+    <listener>
+        <listener-class>com.scyb.aisbroadcast.common.listener.InitializeConfigListener</listener-class>
+    </listener>
+
+    <!-- BD com interface initialize -->
+    <listener>
+        <listener-class>com.scyb.aisbroadcast.common.listener.ComContextListener</listener-class>
+    </listener>
+
+    <!-- socket initialize -->
+    <listener>
+        <listener-class>com.scyb.aisbroadcast.common.listener.SocketListener</listener-class>
+    </listener>
+</web-app>

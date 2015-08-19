@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.scyb.aisbroadcast.bd.bo.LocationInfo" table="LOCATION_INFO" schema="SOUTHSEA">
+        <id name="guid">
+            <column name="GUID" sql-type="varchar2" length="64" not-null="true"/>
+            <generator class="uuid"/>
+        </id>
+        <property name="l1Latitude">
+            <column name="L1_LATITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l1Longitude">
+            <column name="L1_LONGITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l2Latitude">
+            <column name="L2_LATITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l2Longitude">
+            <column name="L2_LONGITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l3Latitude">
+            <column name="L3_LATITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l3Longitude">
+            <column name="L3_LONGITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l4Latitude">
+            <column name="L4_LATITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l4Longitude">
+            <column name="L4_LONGITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l5Latitude">
+            <column name="L5_LATITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="l5Longitude">
+            <column name="L5_LONGITUDE" sql-type="varchar2" length="32"/>
+        </property>
+        <property name="createTime" insert="false" update="false">
+            <column name="CREATE_TIME" sql-type="timestamp(6)" default="CURRENT_TIMESTAMP"/>
+        </property>
+    </class>
+</hibernate-mapping>
