@@ -26,6 +26,7 @@ public class SocketListener implements ServletContextListener {
         int baseStationPort = GlobalVariable.getAisSocketPort();
         try {
             Socket socket = new Socket(baseStationIp, baseStationPort);
+            // "SOH w s m NUL 6 0 1 2 0 2 NUL"
             char b[] = { 0x01, 0x77, 0x73, 0x6D, 0x00, 0x36, 0x30, 0x31, 0x32, 0x30, 0x32, 0x00 };
             // 向服务器端发送数据
             PrintWriter pw = new PrintWriter(socket.getOutputStream());

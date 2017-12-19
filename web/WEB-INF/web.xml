@@ -26,18 +26,33 @@
         <param-value>/WEB-INF/applicationContext.xml</param-value>
     </context-param>
 
+    <!-- WebService CXF config -->
+    <servlet>
+        <servlet-name>CXFService</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CXFService</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+
     <!-- properties initialize -->
     <listener>
         <listener-class>com.scyb.aisbroadcast.common.listener.InitializeConfigListener</listener-class>
     </listener>
 
-    <!-- BD com interface initialize -->
+    <!-- BD com interface initialize
     <listener>
         <listener-class>com.scyb.aisbroadcast.common.listener.ComContextListener</listener-class>
     </listener>
-
+-->
     <!-- socket initialize -->
     <listener>
         <listener-class>com.scyb.aisbroadcast.common.listener.SocketListener</listener-class>
     </listener>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -56,7 +56,7 @@ public class BDInfoUtil {
                 /*保存常规预报*/
                 generalForecastServiceImpl.addGeneralForcastService(generalForecast);
                 if("0".equals(generalForecast.getMmsi())) {
-                    GlobalVariable.setGeneralForecastMsg(aisMsgForecastServiceImpl.generalForecastMsg(generalForecast));
+//                    GlobalVariable.setGeneralForecastMsg(aisMsgForecastServiceImpl.generalForecastMsg(generalForecast));
 //                    generalForecastServiceImpl.sendGeneralForecastPlanService();
                 }else {
                     /*发送常规预报，6号报文*/
@@ -71,7 +71,7 @@ public class BDInfoUtil {
                 /*保存数值预报*/
                 numericalForecastServiceImpl.addNumericalForcastService(numericalForecast);
                 if("0".equals(numericalForecast.getMmsi())) {
-                    GlobalVariable.setNumericalForecastMsgList(aisMsgForecastServiceImpl.numericalForecastMsg(numericalForecast));
+//                    GlobalVariable.setNumericalForecastMsgList(aisMsgForecastServiceImpl.numericalForecastMsg(numericalForecast));
                 }else {
                     /*发送常规预报,多点预报需要数据处理完整开始播发*/
                     numericalForecastServiceImpl.sendNumericalForcastService(numericalForecast);

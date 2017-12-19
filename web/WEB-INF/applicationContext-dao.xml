@@ -3,24 +3,27 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-    <!-- 常规预报Dao -->
+    <!-- 常规预报Dao
 	<bean id="generalForecastDaoImpl" class="com.scyb.aisbroadcast.bd.dao.impl.GeneralForecastDaoImpl">
 		<property name="sessionFactory" ref="companySessionFactory" />
 	</bean>
-
-    <!-- 数值预报Dao -->
+ -->
+    <!-- 数值预报Dao
     <bean id="numericalForecastDaoImpl" class="com.scyb.aisbroadcast.bd.dao.impl.NumericalForecastDaoImpl">
         <property name="sessionFactory" ref="companySessionFactory" />
     </bean>
-
-    <!-- 位置设置Dao -->
+-->
+    <!-- 位置设置Dao
     <bean id="locationInfoDaoImpl" class="com.scyb.aisbroadcast.bd.dao.impl.LocationInfoDaoImpl">
         <property name="sessionFactory" ref="companySessionFactory" />
     </bean>
-
-    <!-- 短消息Dao -->
+ -->
+    <!-- 短消息Dao
     <bean id="messageDaoImpl" class="com.scyb.aisbroadcast.bd.dao.impl.MessageDaoImpl">
         <property name="sessionFactory" ref="companySessionFactory" />
     </bean>
-
+-->
+    <bean id="webserviceDaoImpl" class="com.scyb.aisbroadcast.webservice.dao.impl.WebserviceDaoImpl">
+        <property name="sessionFactory" ref="companySessionFactory" />
+    </bean>
 </beans>

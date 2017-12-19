@@ -7,10 +7,10 @@
 	<!-- Oracle WeatherData DataSource Config-->
 	<bean id="companyDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="${orcl_driver}"></property>
-		<property name="jdbcUrl" value="${orcl_url}"></property>
-		<property name="user" value="${orcl_username}" />  
-		<property name="password" value="${orcl_password}" />  
+		<property name="driverClass" value="${mysql_driver}"></property>
+		<property name="jdbcUrl" value="${mysql_url}"></property>
+		<property name="user" value="${mysql_username}" />
+		<property name="password" value="${mysql_password}" />
 		<property name="minPoolSize" value="${c3p0_minPoolSize}" />  
         <property name="maxPoolSize" value="${c3p0_maxPoolSize}" />  
         <property name="maxIdleTime" value="${c3p0_maxIdleTime}" />  
@@ -32,23 +32,20 @@
 		p:dataSource-ref="companyDataSource">
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.connection.autocommit">false</prop>
 				<prop key="hibernate.generate_statistics">false</prop>
 				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory
 				</prop>
 				<prop key="hibernate.connection.release_mode">after_statement</prop>
-                <prop key="hibernate.connection.url">jdbc:oracle:thin:@//192.168.1.162:1521/orcl</prop>
-                <prop key="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost/ysjais?characterEncoding=utf8</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
 		</property>
 		<property name="mappingResources">
 			<list>
-                <value>com/scyb/aisbroadcast/bd/bo/GeneralForecast.hbm.xml</value>
-                <value>com/scyb/aisbroadcast/bd/bo/NumericalForecast.hbm.xml</value>
-                <value>com/scyb/aisbroadcast/bd/bo/LocationInfo.hbm.xml</value>
-                <value>com/scyb/aisbroadcast/bd/bo/Message.hbm.xml</value>
+                <value>com/scyb/aisbroadcast/webservice/po/WebserviceLogPo.hbm.xml</value>
             </list>
 		</property>
 	</bean>

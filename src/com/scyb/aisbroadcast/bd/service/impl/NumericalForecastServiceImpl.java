@@ -55,12 +55,12 @@ public class NumericalForecastServiceImpl implements INumericalForecastService {
 
     @Override
     public void sendNumericalForcastService(NumericalForecast numericalForecast) {
-        List<String> numericalForecastList = aisMsgForecastServiceImpl.numericalForecastMsg(numericalForecast);
-        for (int i = 0; i < numericalForecastList.size(); i++) {
-            String iecCode = characterConvertAisCodeUtil.convertAisCode(numericalForecastList.get(i));
-            List<String> aisMsgList = serialDataUtil.generationABM(iecCode, numericalForecast.getMmsi());
-            sendMessageServiceImpl.sendMessages(aisMsgList);
-        }
+//        List<String> numericalForecastList = aisMsgForecastServiceImpl.numericalForecastMsg(numericalForecast);
+//        for (int i = 0; i < numericalForecastList.size(); i++) {
+//            String iecCode = characterConvertAisCodeUtil.convertAisCode(numericalForecastList.get(i));
+//            List<String> aisMsgList = serialDataUtil.generationABM(iecCode, numericalForecast.getMmsi());
+//            sendMessageServiceImpl.sendMessages(aisMsgList);
+//        }
     }
 
     @Override

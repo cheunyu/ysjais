@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="generalForecastServiceImpl"
+		class="com.scyb.aisbroadcast.webservice.impl.GeneralForecastServiceImpl">
+	</bean>
+
+	<bean id="numericalForecastServiceImpl"
+		  class="com.scyb.aisbroadcast.webservice.impl.NumericalForecastServiceImpl">
+	</bean>
+
+	<bean id="messageServiceImpl"
+		  class="com.scyb.aisbroadcast.webservice.impl.MessageServiceImpl">
+	</bean>
+
+	<!-- JAX-WS -->
+	<jaxws:endpoint implementor="#generalForecastServiceImpl"
+		address="/generalForecastService" publish="true">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+	<jaxws:endpoint implementor="#numericalForecastServiceImpl"
+					address="/numericalForecastService" publish="true">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+	<jaxws:endpoint implementor="#messageServiceImpl"
+					address="/messageService" publish="true">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.binding.soap.saaj.SAAJInInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+
+</beans>

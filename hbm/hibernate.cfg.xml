@@ -4,11 +4,17 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:oracle:thin:@//192.168.1.162:1521/orcl</property>
-    <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
-      <mapping resource="com/LocationInfo.hbm.xml"/>
+    <property name="connection.url">jdbc:mysql://localhost:3306/ysjais</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="hbm2ddl.auto">create</property>
+    <mapping class="entity.WebserviceLogEntity"/>
+    <mapping resource="entity/WebserviceLogEntity.hbm.xml"/>
+    <!--
+    <mapping resource="com/LocationInfo.hbm.xml"/>
       <mapping class="com.LocationInfo"/>
-      <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
+      -->
   </session-factory>
 </hibernate-configuration>

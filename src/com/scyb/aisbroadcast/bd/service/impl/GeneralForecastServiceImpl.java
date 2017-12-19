@@ -55,10 +55,10 @@ public class GeneralForecastServiceImpl implements IGeneralForecastService {
 
     @Override
     public void sendGeneralForcastService(GeneralForecast generalForecast) {
-        String msg = aisMsgForecastServiceImpl.generalForecastMsg(generalForecast);
-        String iecCode = characterConvertAisCodeUtil.convertAisCode(msg);
-        List<String> aisMsgList = serialDataUtil.generationABM(iecCode, generalForecast.getMmsi());
-        sendMessageServiceImpl.sendMessages(aisMsgList);
+//        String msg = aisMsgForecastServiceImpl.generalForecastMsg(generalForecast);
+//        String iecCode = characterConvertAisCodeUtil.convertAisCode(msg);
+//        List<String> aisMsgList = serialDataUtil.generationABM(iecCode, generalForecast.getMmsi());
+//        sendMessageServiceImpl.sendMessages(aisMsgList);
     }
 
     @Override
